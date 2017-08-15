@@ -63,9 +63,7 @@ public class Minegrid extends JPanel{
 
     public void start(int height, int width, int bombs) {
         unclicked = height * width;
-        if (bombs > unclicked) {
-            bombs = (int) (unclicked * 0.1);
-        }
+
         this.bombs = bombs;
 
         generateTiles(height, width);
@@ -118,12 +116,19 @@ public class Minegrid extends JPanel{
         tiles.clear();
         setLayout(new GridLayout(height, width, 1, 1));
 
-
+        //        GridBagConstraints c = new GridBagConstraints();
+        //        c.fill = GridBagConstraints.BOTH;
+        //        c.anchor = GridBagConstraints.NORTHWEST;
+        //        c.weightx = 1;
+        //        c.weighty = 1;
         for (int i = 0; i < height; i++) {
             ArrayList<Tile> temp = new ArrayList<Tile>();
             for (int i2 = 0; i2 < width; i2++) {
                 Tile t = new Tile();
                 t.addMouseListener(new ButtonAdapter(i, i2));
+                //                c.gridy = i;
+                //                c.gridx = i2;
+                //                add(t, c);
                 add(t);
                 temp.add(t);
             }

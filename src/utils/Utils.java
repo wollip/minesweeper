@@ -10,8 +10,7 @@ import javax.swing.ImageIcon;
 
 public class Utils {
 
-    public static ImageIcon imageIcon(String filePath, int height, int width) throws IOException {
-        BufferedImage originalImage = ImageIO.read(new File(filePath));
+    public static ImageIcon resize(BufferedImage originalImage, int height, int width) {
         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
         BufferedImage resizeImage = new BufferedImage(width, height, type);
         Graphics2D g = resizeImage.createGraphics();
@@ -20,8 +19,12 @@ public class Utils {
         return new ImageIcon(resizeImage);
     }
 
-    public static ImageIcon imageicon(String filePath) throws IOException {
-        BufferedImage originalImage = ImageIO.read(new File(filePath));
-        return new ImageIcon(originalImage);
+    public static BufferedImage getImage(String filePath) throws IOException {
+        return ImageIO.read(new File(filePath));
+    }
+
+    public static ImageIcon imageIcon(String filePath, int height, int width) throws IOException {
+        BufferedImage orig = getImage(filePath);
+        return resize(orig, height, width);
     }
 }

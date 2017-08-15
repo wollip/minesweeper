@@ -43,7 +43,7 @@ public class Game extends JPanel{
         c.gridy = 0;
         c.gridx = 0;
         c.weightx = 0.4;
-        c.weighty = 0.1;
+        c.weighty = 0.11;
         add(timeDisplay, c);
 
         stateDisplay = new JLabel();
@@ -72,6 +72,10 @@ public class Game extends JPanel{
     }
 
     public void startGame(int height, int width, int bombs) {
+        if (bombs > height * width) {
+            bombs = (int) (height * width * 0.1);
+        }
+
         grid.start(height, width, bombs);
         this.height = height;
         this.width = width;
@@ -82,9 +86,9 @@ public class Game extends JPanel{
             stateDisplay.setHorizontalAlignment(JLabel.CENTER);
             stateDisplay.setText("");
             stateDisplay.setIcon(
-                    Utils.imageIcon("src\\pictures\\alive.png",
-                            100,
-                            100));
+                    Utils.imageIcon("src\\pictures\\alive3.png",
+                            50,
+                            50));
         } catch (IOException e) {
             System.out.println(e);
             stateDisplay.setIcon(null);
@@ -113,13 +117,13 @@ public class Game extends JPanel{
             stateDisplay.setHorizontalAlignment(JLabel.CENTER);
             stateDisplay.setText("");
             stateDisplay.setIcon(
-                    Utils.imageIcon("src\\pictures\\win.png",
-                            100,
-                            100));
+                    Utils.imageIcon("src\\pictures\\win2.png",
+                            50,
+                            50));
         } catch (IOException e) {
             System.out.println(e);
             stateDisplay.setIcon(null);
-            stateDisplay.setText("Happy");
+            stateDisplay.setText("win");
         }
         prompt(true);
     }
@@ -130,13 +134,13 @@ public class Game extends JPanel{
             stateDisplay.setHorizontalAlignment(JLabel.CENTER);
             stateDisplay.setText("");
             stateDisplay.setIcon(
-                    Utils.imageIcon("src\\pictures\\lose.png",
-                            100,
-                            100));
+                    Utils.imageIcon("src\\pictures\\lose4.png",
+                            50,
+                            50));
         } catch (IOException e) {
             System.out.println(e);
             stateDisplay.setIcon(null);
-            stateDisplay.setText("Sad");
+            stateDisplay.setText("lose");
         }
         prompt(false);
     }

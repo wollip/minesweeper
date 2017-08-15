@@ -1,6 +1,5 @@
 package minesweeper.ui;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +20,7 @@ public class Menu extends JPanel{
         for (int i = 0; i < 3; i++) {
             add(labels[i]);
             fields[i] = new JTextField();
-            fields[i].setPreferredSize(new Dimension(30,20));
+            fields[i].setText("    ");
             add(fields[i]);
         }
 
@@ -30,9 +29,9 @@ public class Menu extends JPanel{
 
             @Override
             public void mouseClicked(MouseEvent arg0) {
-                int height = Integer.parseInt(fields[0].getText());
-                int width = Integer.parseInt(fields[1].getText());
-                int bombs = Integer.parseInt(fields[2].getText());
+                int height = Integer.parseInt(fields[0].getText().replaceAll("\\s+", ""));
+                int width = Integer.parseInt(fields[1].getText().replaceAll("\\s+", ""));
+                int bombs = Integer.parseInt(fields[2].getText().replaceAll("\\s+", ""));
                 System.out.println(height + ", " + width + ", " + bombs);
                 game.startGame(height, width, bombs);
             }
